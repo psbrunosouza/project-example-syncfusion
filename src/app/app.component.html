@@ -1,2 +1,10 @@
-<ejs-filemanager #fileManager id='default-filemanager' (menuOpen)="menuOpen($event)" (menuClick)="menuClick($event)"  [contextMenuSettings]="contextMenuSettings"  [ajaxSettings]='ajaxSettings' [view]="view">
+<ejs-filemanager
+  #fileManager
+  id='default-filemanager'
+  (beforeSend)="beforeSend($event)"
+  (menuOpen)="menuOpen($event)"
+  (menuClick)="menuClick($event)"
+  [contextMenuSettings]="contextMenuSettings"
+  [ajaxSettings]='ajaxSettings'
+  [view]="view">
 </ejs-filemanager>

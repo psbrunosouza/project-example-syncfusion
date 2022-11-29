@@ -1,8 +1,56 @@
 {
-  "Files": {
-    "action": "read",
-    "path": "/",
-    "showHiddenItems": false,
-    "data": []
-  }
+  "cwd": {
+    "name": "/",
+    "size": 0,
+    "dateModified": "2019-02-28T03:48:19.8319708+00:00",
+    "dateCreated": "2019-02-27T17:36:15.812193+00:00",
+    "hasChild": false,
+    "isFile": false,
+    "type": "",
+    "filterPath": ""
+  },
+  "files": [
+    {
+      "name": "teste",
+      "dateModified": "2019-02-27T17:23:50.9651206+00:00",
+      "dateCreated": "2019-02-27T17:36:15.8151955+00:00",
+      "hasChild": true,
+      "isFile": false,
+      "type": "folder",
+      "filterPath": "//"
+    },
+
+    {
+      "name": "Sample Work Sheet.xlsx",
+      "size": 6172,
+      "dateModified": "2019-02-27T17:23:50.9651206+00:00",
+      "dateCreated": "2019-02-27T17:36:15.8151955+00:00",
+      "hasChild": false,
+      "isFile": true,
+      "type": ".xlsx",
+      "filterPath": "//"
+    },
+    {
+      "name": "Sampletess.xlsx",
+      "size": 6777,
+      "dateModified": "2019-02-28T17:23:50.9651206+00:00",
+      "dateCreated": "2019-02-28T17:36:15.8151955+00:00",
+      "hasChild": false,
+      "isFile": true,
+      "type": ".xlsx",
+      "filterPath": "//"
+    },
+    {
+      "name": "Sampletess.xlsx",
+      "size": 6777,
+      "dateModified": "2019-02-28T17:23:50.9651206+00:00",
+      "dateCreated": "2019-02-28T17:36:15.8151955+00:00",
+      "hasChild": false,
+      "isFile": true,
+      "type": "folder",
+      "filterPath": "//teste//"
+    }
+  ],
+  "error": null,
+  "details": null
 }

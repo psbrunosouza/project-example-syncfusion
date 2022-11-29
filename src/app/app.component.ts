@@ -20,6 +20,7 @@ export class AppComponent implements OnInit, AfterViewInit{
   view: ViewType = "Details"
   ajaxSettings = {
     url: 'https://60bbd2283a39900017b2df38.mockapi.io/cookit/api/v1/files',
+    // url: 'https://ej2-aspcore-service.azurewebsites.net/api/FileManager/FileOperations'
   };
 
   contextMenuSettings = {
@@ -44,5 +45,9 @@ export class AppComponent implements OnInit, AfterViewInit{
   }
   menuOpen(args: any){
     this.fileManagerInstance.disableMenuItems(["Custom"]);
+  }
+
+  beforeSend(args: any){
+    args.setRequestHeader("Authorization","Bearer " + 'token here');
   }
 }
