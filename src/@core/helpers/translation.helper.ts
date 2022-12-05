@@ -1,0 +1,110 @@
+export const portuguese = {
+  'pt-BR': {
+    filemanager: {
+      NewFolder: 'Nova Pasta',
+      Delete: 'Deletar',
+      Rename: 'Renomear',
+      Cut: 'Recortar',
+      Copy: 'Copiar',
+      Paste: 'Colar',
+      SortBy: 'Ordenar Por',
+      Refresh: 'Atualizar',
+      'Item-Selection': 'Artikel ausgewählt',
+      'Items-Selection': 'Elemente ausgewählt',
+      View: 'Visualizar',
+      Details: 'Detalhes',
+      SelectAll: 'Selecionar Tudo',
+      Open: 'Abrir',
+      'Tooltip-NewFolder': 'Nova Pasta',
+      'Tooltip-Upload': 'Upload',
+      'Tooltip-Delete': 'Deletar',
+      'Tooltip-Rename': 'Renomear',
+      'Tooltip-Download': 'Download',
+      'Tooltip-Cut': 'Cortar',
+      'Tooltip-Copy': 'Copiar',
+      'Tooltip-Paste': 'Colar',
+      'Tooltip-SortBy': 'Ordenar Por',
+      'Tooltip-Refresh': 'Atualizar',
+      'Tooltip-Selection': 'Selecionados',
+      'Tooltip-View': 'Visualizar',
+      'Tooltip-Details': 'Detalhes',
+      'Tooltip-SelectAll': 'Selecionar Todos',
+      Name: 'Nome',
+      Size: 'Tamanho',
+      DateModified: 'Data de atualização',
+      DateCreated: 'Data de criação',
+      Path: 'Caminho',
+      Modified: 'Modificado em',
+      Created: 'Criado',
+      Location: 'Localização',
+      Type: 'Tipo',
+      Permission: 'Permissão',
+      Ascending: 'Crescente',
+      Descending: 'Decrescente',
+      None: 'Nenhum',
+      'View-LargeIcons': 'Ícones Grandes',
+      'View-Details': 'Lista',
+      Search: 'Buscar',
+      'Button-Ok': 'OK',
+      'Button-Cancel': 'Cancelar',
+      'Button-Yes': 'Sim',
+      'Button-No': 'Não',
+      'Button-Create': 'Criar',
+      'Button-Save': 'Salvar',
+      'Header-NewFolder': 'Novo Diretório',
+      'Content-NewFolder': 'Novo Diretório',
+      'Header-Rename': 'Renomear',
+      'Content-Rename': 'Renomear',
+      'Header-Rename-Confirmation': 'Confirmar renomeação',
+      // 'Content-Rename-Confirmation':
+      // 'Wenn Sie eine Dateinamenerweiterung ändern, wird die Datei möglicherweise instabil. Möchten Sie sie wirklich ändern?',
+      'Header-Delete': 'Deletar',
+      // 'Content-Delete': 'Möchten Sie diese Datei wirklich löschen?',
+      'Header-Multiple-Delete': 'Deletar',
+      // 'Content-Multiple-Delete':
+      // 'Möchten Sie diese {0} Dateien wirklich löschen?',
+      // 'Header-Folder-Delete': 'Lösche Ordner',
+      // 'Content-Folder-Delete':
+      // 'Möchten Sie diesen Ordner wirklich löschen?',
+      // 'Header-Duplicate': 'Datei / Ordner existiert',
+      // 'Content-Duplicate':
+      // '{0} existiert bereits. Möchten Sie umbenennen und einfügen?',
+      // 'Header-Upload': 'Daten hochladen',
+      Error: 'Erro',
+      // 'Validation-Empty':
+      // 'Der Datei - oder Ordnername darf nicht leer sein.',
+      // 'Validation-Invalid':
+      // 'Der Datei- oder Ordnername {0} enthält ungültige Zeichen. Bitte verwenden Sie einen anderen Namen. Gültige Datei- oder Ordnernamen dürfen nicht mit einem Punkt oder Leerzeichen enden und keines der folgenden Zeichen enthalten: \\ /: *? " < > | ',
+      // 'Validation-NewFolder-Exists':
+      // 'Eine Datei oder ein Ordner mit dem Namen {0} existiert bereits.',
+      // 'Validation-Rename-Exists':
+      // '{0} kann nicht in {1} umbenannt werden: Ziel existiert bereits.',
+      'Folder-Empty': 'Esta Pasta está vazia',
+      // 'File-Upload': 'Dateien zum Hochladen hierher ziehen',
+      // 'Search-Empty': 'Keine Ergebnisse gefunden',
+      // 'Search-Key': 'Versuchen Sie es mit anderen Stichwörtern',
+      // 'Filter-Empty': 'keine Ergebnisse gefunden',
+      // 'Filter-Key': 'Versuchen Sie es mit einem anderen Filter',
+      // 'Sub-Folder-Error':
+      // 'Der Zielordner ist der Unterordner des Quellordners.',
+      // 'Same-Folder-Error':
+      // 'Der Zielordner ist derselbe wie der Quellordner.',
+      // 'Access-Denied': 'Zugriff verweigert',
+      // 'Access-Details':
+      // 'Sie haben keine Berechtigung, auf diesen Ordner zuzugreifen.',
+      // 'Header-Retry': 'Die Datei existiert bereits',
+      // 'Content-Retry':
+      // 'In diesem Ordner ist bereits eine Datei mit diesem Namen vorhanden. Was möchten Sie tun?',
+      // 'Button-Keep-Both': 'Behalte beides',
+      // 'Button-Replace': 'Ersetzen',
+      // 'Button-Skip': 'Überspringen',
+      // 'ApplyAll-Label': 'Mache das für alle aktuellen Artikel',
+      KB: 'KB',
+      // 'Access-Message':
+      // '{0} ist nicht zugänglich. Sie benötigen die Berechtigung, um die Aktion {1} auszuführen.',
+      'Network-Error':
+      'Erro de conexão: Falha ao concluir Requisição',
+      'Server-Error': 'Erro no servidor'
+    }
+  }
+}

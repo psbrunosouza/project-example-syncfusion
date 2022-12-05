@@ -2,9 +2,11 @@
   #fileManager
   id='default-filemanager'
   (beforeSend)="beforeSend($event)"
+  (beforeDownload)="beforeDownload($event)"
   (menuOpen)="menuOpen($event)"
   (menuClick)="menuClick($event)"
   [contextMenuSettings]="contextMenuSettings"
   [ajaxSettings]='ajaxSettings'
+  [locale]="locale"
   [view]="view">
 </ejs-filemanager>
