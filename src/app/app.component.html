@@ -1,12 +1,15 @@
 <ejs-filemanager
   #fileManager
-  id='default-filemanager'
+  id='doctec-filemanager'
   (beforeSend)="beforeSend($event)"
   (beforeDownload)="beforeDownload($event)"
   (menuOpen)="menuOpen($event)"
   (menuClick)="menuClick($event)"
   [contextMenuSettings]="contextMenuSettings"
-  [ajaxSettings]='ajaxSettings'
+  [ajaxSettings]="ajaxSettings"
+  [allowMultiSelection]="allowMultiSelection"
+  [detailsViewSettings]='detailsViewSettings'
+  [showThumbnail]='showThumbnail'
   [locale]="locale"
-  [view]="view">
+  [view]='view'>
 </ejs-filemanager>

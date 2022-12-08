@@ -8,7 +8,7 @@ import {
   ViewType
 } from "@syncfusion/ej2-angular-filemanager";
 import { L10n } from '@syncfusion/ej2-base';
-import {portuguese} from "../@core/helpers/translation.helper";
+import {portuguese} from "../@core/helpers/fileManagerTranslation.helper";
 
 @Component({
   selector: 'app-root',
@@ -18,16 +18,51 @@ import {portuguese} from "../@core/helpers/translation.helper";
   providers: [NavigationPaneService, ToolbarService, DetailsViewService]
 })
 export class AppComponent implements OnInit, AfterViewInit {
-
   @ViewChild('fileManager') fileManagerInstance!: FileManager;
-  view: ViewType = "Details"
+  view: ViewType = "LargeIcons"
 
   locale = 'pt-BR';
 
+  allowMultiSelection = false;
+
+  showThumbnail = false;
+
   ajaxSettings = {
-    // url: 'https://60bbd2283a39900017b2df38.mockapi.io/cookit/api/v1/files',
-    // url: 'https://ej2-aspcore-service.azurewebsites.net/api/FileManager/FileOperations'
     url: 'http://localhost:3334/v1/syncfusion/file-manager',
+  };
+
+  detailsViewSettings = {
+    columns: [
+      {
+        field: 'name',
+        headerText: 'Nome',
+        minWidth: 120,
+        width: 'auto',
+        customAttributes: { class: 'e-fe-grid-name' },
+        template: '${name}'
+      },
+      {
+        field: 'code',
+        headerText: 'Código',
+        minWidth: 50,
+        width: 'auto',
+        template: '${code}',
+      },
+      {
+        field: 'status',
+        headerText: 'Status',
+        minWidth: 50,
+        width: 'auto',
+        template: '${status}',
+      },
+      {
+        field: 'modified_date',
+        headerText: 'Última modificação',
+        minWidth: 50,
+        width: '190',
+        template: '${dateModified}',
+      }
+    ]
   };
 
   contextMenuSettings = {
@@ -38,7 +73,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   };
 
   public ngOnInit(): void {
-    this.view = "Details";
     L10n.load(portuguese);
   }
 
@@ -66,7 +100,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     console.log(args.ajaxSettings)
     args.ajaxSettings.beforeSend = (args: any) => {
       //Setting authorization header
-      args.httpRequest.setRequestHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiY29tcGFueSI6eyJpZCI6NTE3NX0sInVzZXIiOnsiaWQiOjk4LCJuYW1lIjoiRWR1YXJkbyBBc3N1bsOnw6NvIn0sImlzTWFzdGVyIjpmYWxzZSwiaXNSZXNhbGUiOmZhbHNlLCJpc0Jhc2UiOnRydWV9LCJpYXQiOjE2NzAyNTI1NjMsImV4cCI6MTY3MDI4MTM2M30.wQ6YgHiCcJWdHX9mSFIrAtXWd1ezNH5SixikBLz4aFo")
+      args.httpRequest.setRequestHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiY29tcGFueSI6eyJpZCI6NTE3NX0sInVzZXIiOnsiaWQiOjk4LCJuYW1lIjoiRWR1YXJkbyBBc3N1bsOnw6NvIn0sImlzTWFzdGVyIjpmYWxzZSwiaXNSZXNhbGUiOmZhbHNlLCJpc0Jhc2UiOnRydWV9LCJpYXQiOjE2NzA1MDM5NTIsImV4cCI6MTY3MDUzMjc1Mn0.Ch3FpTJfSsjVLMeWTMUBR5mD9WQw9fX9rpisUXoj4Fg")
     }
   }
 
