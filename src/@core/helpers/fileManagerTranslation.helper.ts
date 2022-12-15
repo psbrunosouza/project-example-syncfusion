@@ -2,6 +2,13 @@ export const portuguese = {
   'pt-BR': {
     filemanager: {
       NewFolder: 'Nova Pasta',
+      Move: 'Mover',
+      RequestFile: 'Solicitar Arquivo',
+      NewFile: 'Novo Documento',
+      SendFile: 'Enviar Arquivo',
+      ReviewDocument: 'Revisar Documento',
+      RelateDocument: 'Relacionar Documento',
+      RequestPublication: 'Solicitar Publicação',
       Delete: 'Deletar',
       Rename: 'Renomear',
       Cut: 'Recortar',

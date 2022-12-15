@@ -1,14 +1,18 @@
 import {AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import { L10n } from '@syncfusion/ej2-base';
 import {
-  AjaxSettings,
-  DetailsViewService, FileManager,
+  DetailsViewService,
+  FileManager,
   MenuClickEventArgs,
+  MenuOpenEventArgs,
   NavigationPaneService,
   ToolbarService,
   ViewType
-} from "@syncfusion/ej2-angular-filemanager";
-import { L10n } from '@syncfusion/ej2-base';
-import {portuguese} from "../@core/helpers/fileManagerTranslation.helper";
+} from '@syncfusion/ej2-angular-filemanager';
+
+import { IDirectoryFileUserPermissions } from '../@core/interfaces/IDirectoryFileUserPermissions';
+import { IDirectoryUserPermissions } from '../@core/interfaces/IDirectoryUserPermissions';
+import { portuguese } from "../@core/helpers/fileManagerTranslation.helper";
 
 @Component({
   selector: 'app-root',
@@ -66,9 +70,9 @@ export class AppComponent implements OnInit, AfterViewInit {
   };
 
   contextMenuSettings = {
-    file: ['Custom', 'Open', '|', 'Delete', 'Rename', '|', 'Details'],
-    folder: ['Custom', 'Open', '|', 'Delete', 'Rename', '|', 'Details', 'Edit'],
-    layout: ['Custom', 'SortBy', 'View', 'Refresh', '|', 'NewFolder', 'Upload', '|', 'Details', '|', 'SelectAll'],
+    file: ['Open', '|', 'Delete', 'Rename', 'Move', '|', 'SendFile', 'ReviewDocument', 'RelateDocument', 'RequestPublication', '|', 'Details'],
+    folder: ['Open', '|', 'NewFolder', 'Rename', 'Delete', 'Move', '|', 'RequestFile', 'NewFile', '|', 'Details'],
+    layout: ['SortBy', 'View', 'Refresh', '|', 'NewFolder', 'Upload'],
     visible: true,
   };
 
@@ -77,34 +81,98 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-
+    // Do Something
   }
 
-  menuClick(args: any) {
-    if (args.item.text === 'Custom') {
-      alert('You have clicked custom menu item')
+  menuClick(args: MenuClickEventArgs) {
+    if (!args.fileDetails || !args.fileDetails.length) {
+      return;
     }
 
-    if (args.item.text === 'Edit') {
-      console.log(args);
+    if (!args.item || !args.item.text) {
+      return;
+    }
 
-      alert('You have clicked edit menu item')
+    const fileDetail = args.fileDetails[0] as any;
+    const isFile = fileDetail.isFile;
+
+    if (isFile) {
+      this.handleFileActions(fileDetail, args.item.text);
+    } else {
+      this.handleDirectoryActions(fileDetail, args.item.text);
     }
   }
 
-  menuOpen(args: any) {
-    this.fileManagerInstance.disableMenuItems(["Custom"]);
+  handleDirectoryActions(_directory: any, actionTitle: string) {
+    const actions: Record<string, () => void> = {
+      'Mover': () => alert('Mover Diretório'),
+      'Solicitar Arquivo': () => alert('Solicitar Arquivo'),
+      'Novo Documento': () => alert('Novo Documento'),
+      'Detalhes': () => alert('Detalhes do Diretório'),
+    }
+
+    actions[actionTitle]();
+  }
+
+  handleFileActions(_file: any, actionTitle: string) {
+    const actions: Record<string, () => void> = {
+      'Mover': () => alert('Mover Arquivo'),
+      'Revisar Documento': () => alert('Revisar Documento'),
+      'Relacionar Documento': () => alert('Relacionar Documento'),
+      'Solicitar Publicação': () => alert('Solicitar Publicação'),
+      'Detalhes': () => alert('Detalhes do Documento'),
+    }
+
+    actions[actionTitle]();
+  }
+
+  onMenuOpen(args: MenuOpenEventArgs) {
+    const isDirectory = args.menuType === 'folder';
+    const isFile = args.menuType === 'file';
+
+    if (!args.fileDetails || !args.fileDetails.length) {
+      return;
+    }
+
+    const fileDetail = args.fileDetails[0] as any;
+
+    if (isDirectory) {
+      const permissions = fileDetail.permissions as IDirectoryUserPermissions;
+
+      this.handleDirectoryContextMenuPermissions(permissions);
+    } else if (isFile) {
+      const permissions = fileDetail.permissions as IDirectoryFileUserPermissions;
+
+      this.handleFileContextMenuPermissions(permissions);
+    }
+  }
+
+  handleDirectoryContextMenuPermissions(permissions: IDirectoryUserPermissions): void {
+    if(!permissions.canCreateDirectoryChild) this.fileManagerInstance.disableMenuItems(["NewFolder"]);
+    if(!permissions.canMove) this.fileManagerInstance.disableMenuItems(["Move"]);
+    if(!permissions.canEdit) this.fileManagerInstance.disableMenuItems(["Rename"]);
+    if(!permissions.canDelete) this.fileManagerInstance.disableMenuItems(["Delete"]);
+    if(!permissions.canRequestFile) this.fileManagerInstance.disableMenuItems(["RequestFile"]);
+    if(!permissions.canCreateDocument) this.fileManagerInstance.disableMenuItems(["NewFile"]);
+  }
+
+  handleFileContextMenuPermissions(permissions: IDirectoryFileUserPermissions): void {
+    if(!permissions.canMove) this.fileManagerInstance.disableMenuItems(["Move"]);
+    if(!permissions.canEdit) this.fileManagerInstance.disableMenuItems(["Rename"]);
+    if(!permissions.canDelete) this.fileManagerInstance.disableMenuItems(["Delete"]);
+    if(!permissions.canSendFile) this.fileManagerInstance.disableMenuItems(["SendFile"]);
+    if(!permissions.canReviewDocument) this.fileManagerInstance.disableMenuItems(["ReviewDocument"]);
+    if(!permissions.canRelateDocuments) this.fileManagerInstance.disableMenuItems(["RelateDocument"]);
+    if(!permissions.canRequestPublication) this.fileManagerInstance.disableMenuItems(["RequestPublication"]);
   }
 
   beforeSend(args: any) {
-    console.log(args.ajaxSettings)
     args.ajaxSettings.beforeSend = (args: any) => {
-      //Setting authorization header
-      args.httpRequest.setRequestHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiY29tcGFueSI6eyJpZCI6NTE3NX0sInVzZXIiOnsiaWQiOjk4LCJuYW1lIjoiRWR1YXJkbyBBc3N1bsOnw6NvIn0sImlzTWFzdGVyIjpmYWxzZSwiaXNSZXNhbGUiOmZhbHNlLCJpc0Jhc2UiOnRydWV9LCJpYXQiOjE2NzA1MDM5NTIsImV4cCI6MTY3MDUzMjc1Mn0.Ch3FpTJfSsjVLMeWTMUBR5mD9WQw9fX9rpisUXoj4Fg")
+      args.httpRequest.setRequestHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiY29tcGFueSI6eyJpZCI6NTE3NX0sInVzZXIiOnsiaWQiOjk4LCJuYW1lIjoiRWR1YXJkbyBBc3N1bsOnw6NvIn0sImlzTWFzdGVyIjpmYWxzZSwiaXNSZXNhbGUiOmZhbHNlLCJpc0Jhc2UiOnRydWV9LCJpYXQiOjE2NzExMzE1NzcsImV4cCI6MTY3MTE2MDM3N30.5tyUIb_5DGYu9gPvn8IT2bimFTBU-PTmimlp0yDI6ic")
     }
   }
 
-  beforeDownload(args: any) {
+  beforeDownload(args: any): void {
     console.log(args)
   }
 }
